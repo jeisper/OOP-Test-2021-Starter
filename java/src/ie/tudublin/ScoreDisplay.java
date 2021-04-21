@@ -10,30 +10,6 @@ public class ScoreDisplay extends PApplet {
 	// String score = "D2E2F2G2A2B2c2d2";
 	// String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
 
-	public void settings() {
-		size(1000, 500);
-
-		// How to convert a character to a number
-		char c = '7'; // c holds the character 7 (55)
-		int i = c - '0'; // i holds the number 7 (55 - 48)
-		println(i);
-	}
-
-	public void setup() {
-		note = new ArrayList<Note>();
-
-		loadNotes();
-
-	}
-
-	public void draw() {
-		background(255);
-
-	}
-
-	void drawNotes() {
-	}
-
 	public class Note {
 		private char note;
 		private int duration;
@@ -60,7 +36,45 @@ public class ScoreDisplay extends PApplet {
 		}
 	}
 
+	public void settings() {
+		size(1000, 500);
+
+		// How to convert a character to a number
+		char c = '7'; // c holds the character 7 (55)
+		int i = c - '0'; // i holds the number 7 (55 - 48)
+		println(i);
+	}
+
+	public void setup() {
+		note = new ArrayList<Note>();
+
+		loadNotes();
+
+	}
+
+	public void draw() {
+		background(255);
+
+	}
+
+	void drawNotes() {
+	}
+
 	void loadNotes() {
+		for (int i = 0; i < score.length(); i++) {
+			char currNote = score.charAt(i);
+			int currDuration = 1;
+			if (i + 1 != score.length()) {
+				char nextChar = score.charAt(i + 1);
+				if (Character.isDigit(nextChar)) {
+					currDuration = nextChar - '0';
+					i++;
+				}
+			}
+
+			Note notes = new Note(currNote, currDuration);
+			note.add(notes);
+		}
 	}
 
 }
