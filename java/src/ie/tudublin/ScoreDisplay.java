@@ -1,7 +1,7 @@
 package ie.tudublin;
 
+import java.time.Duration;
 import java.util.ArrayList;
-
 import processing.core.PApplet;
 
 public class ScoreDisplay extends PApplet {
@@ -68,6 +68,10 @@ public class ScoreDisplay extends PApplet {
 		float lineX = 0;
 		float lineY1 = 0;
 		float lineY2 = 0;
+		float secondlineX = 0;
+		float secondlineX2 = 0;
+		float secondlineY1 = 0;
+		float secondlineY2 = 0;
 
 		for (int i = 0; i < note.size(); i++) {
 			textX = map(i, 0, note.size(), 210, 790);
@@ -77,23 +81,31 @@ public class ScoreDisplay extends PApplet {
 			lineY1 = map(i, 0, note.size(), 285, 195);
 			lineY2 = map(i, 0, note.size(), 240, 150);
 
-			textSize(30);
+			if (note.get(i).getDuration() == 1) {
 
+				secondlineX = map(i, 0, note.size(), 220, 800);
+				secondlineX2 = map(i, 0, note.size(), 230, 810);
+				secondlineY1 = map(i, 0, note.size(), 240, 150);
+				secondlineY2 = map(i, 0, note.size(), 250, 160);
+			}
+
+			float x = map(i, 0, note.size(), 200, 800);
+			if (mouseX > (x - 10) && mouseX < (x + 10)) {
+				fill(255, 0, 0);
+				stroke(255, 0, 0);
+			} else {
+				fill(0);
+				stroke(0);
+			}
+			textSize(30);
 			text(note.get(i).getNote(), textX, textY);
-			fill(0);
+
 			ellipse(ellipseX, ellipseY, 20, 20);
-			fill(0);
 			line(lineX, lineY1, lineX, lineY2);
-			// line(220, 240, 230, 250);
+			line(secondlineX, secondlineY1, secondlineX2, secondlineY2);
 			strokeWeight(2);
-		}
-		// ellipse(210, 290, 20, 20);
-		// fill(0);
-		// line(220, 290, 220, 240);
-		// line(220, 240, 230, 250);
-		// strokeWeight(2);
-		if (mouseX > 200 && mouseX < 220) {
-			fill(255, 0, 0);
+			fill(0);
+
 		}
 
 	}
