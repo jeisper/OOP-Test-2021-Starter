@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 
 public class ScoreDisplay extends PApplet {
-	String score = "DEFGABcd";
 	ArrayList<Note> note;
+	// String score = "DEFGABcd";
 	// String score = "D2E2F2G2A2B2c2d2";
-	// String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
+	String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
 
 	public class Note {
 		private char note;
@@ -56,10 +56,46 @@ public class ScoreDisplay extends PApplet {
 	public void draw() {
 		background(255);
 		drawLines();
+		drawNotes();
 
 	}
 
 	void drawNotes() {
+		float textX = 0;
+		float textY = 150;
+		float ellipseX = 0;
+		float ellipseY = 0;
+		float lineX = 0;
+		float lineY1 = 0;
+		float lineY2 = 0;
+
+		for (int i = 0; i < note.size(); i++) {
+			textX = map(i, 0, note.size(), 210, 790);
+			ellipseX = map(i, 0, note.size(), 210, 790);
+			ellipseY = map(i, 0, note.size(), 290, 190);
+			lineX = map(i, 0, note.size(), 220, 800);
+			lineY1 = map(i, 0, note.size(), 285, 195);
+			lineY2 = map(i, 0, note.size(), 240, 150);
+
+			textSize(30);
+
+			text(note.get(i).getNote(), textX, textY);
+			fill(0);
+			ellipse(ellipseX, ellipseY, 20, 20);
+			fill(0);
+			line(lineX, lineY1, lineX, lineY2);
+			// line(220, 240, 230, 250);
+			strokeWeight(2);
+		}
+		// ellipse(210, 290, 20, 20);
+		// fill(0);
+		// line(220, 290, 220, 240);
+		// line(220, 240, 230, 250);
+		// strokeWeight(2);
+		if (mouseX > 200 && mouseX < 220) {
+			fill(255, 0, 0);
+		}
+
 	}
 
 	void loadNotes() {
@@ -91,11 +127,11 @@ public class ScoreDisplay extends PApplet {
 
 	void drawLines() {
 		stroke(0);
-		line(200, 150, 800, 150);
 		line(200, 200, 800, 200);
-		line(200, 250, 800, 250);
-		line(200, 300, 800, 300);
-		line(200, 350, 800, 350);
+		line(200, 220, 800, 220);
+		line(200, 240, 800, 240);
+		line(200, 260, 800, 260);
+		line(200, 280, 800, 280);
 	}
 
 }
