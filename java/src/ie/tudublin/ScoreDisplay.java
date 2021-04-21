@@ -55,6 +55,7 @@ public class ScoreDisplay extends PApplet {
 
 	public void draw() {
 		background(255);
+		drawLines();
 
 	}
 
@@ -86,6 +87,15 @@ public class ScoreDisplay extends PApplet {
 				println(notes.getNote() + "-" + notes.getDuration() + "-" + "Crotchet");
 			}
 		}
+	}
+
+	void drawLines() {
+		stroke(0);
+		line(200, 150, 800, 150);
+		line(200, 200, 800, 200);
+		line(200, 250, 800, 250);
+		line(200, 300, 800, 300);
+		line(200, 350, 800, 350);
 	}
 
 }
