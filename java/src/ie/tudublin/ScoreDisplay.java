@@ -49,6 +49,7 @@ public class ScoreDisplay extends PApplet {
 		note = new ArrayList<Note>();
 
 		loadNotes();
+		printScore();
 
 	}
 
@@ -74,6 +75,16 @@ public class ScoreDisplay extends PApplet {
 
 			Note notes = new Note(currNote, currDuration);
 			note.add(notes);
+		}
+	}
+
+	void printScore() {
+		for (Note notes : note) {
+			if (notes.getDuration() == 1) {
+				println(notes.getNote() + "-" + notes.getDuration() + "-" + "Quaver");
+			} else {
+				println(notes.getNote() + "-" + notes.getDuration() + "-" + "Crotchet");
+			}
 		}
 	}
 
